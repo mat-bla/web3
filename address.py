@@ -10,19 +10,16 @@ Created on Mon Dec 20 14:39:02 2021
 from eth_account import Account
 import secrets
 
-print("Each extra character increases runtime 10x")
-vanity = str(input("Enter any numbers or letters (a-f) : "))
+vanity = str('0x')
+vanity += ('0000') ## Enter hex here
 print("Running...")
-
+            
 while True:
     priv = secrets.token_hex(32)
-    if priv.startswith(vanity) == True:
-        privateKey = "0x" + priv
-        print ("Private Key:", privateKey)
-        account = Account.from_key(privateKey)
+    privateKey = "0x" + priv
+    account = Account.from_key(privateKey)
+    if account.address.startswith(vanity):
         print("Address:", account.address)
+        print ("Private Key:", privateKey)
         break
         
-        
-    
-    
